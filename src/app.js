@@ -9,9 +9,10 @@ const client = new Twitter({
     access_token_secret: config.access_token_secret
 });
 
-const stream = client.stream('statuses/filter', { track: '#GalaUTT2017' });
+const stream = client.stream('statuses/filter', { track: '#GalaUTT2018' });
 
 stream.on('data', function(event) {
+    console.log("tweet !")
     request.post({
         url    : `${config.api}/sms`,
         headers: { 'content-type': 'application/json' },
