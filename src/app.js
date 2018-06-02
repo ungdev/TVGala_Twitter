@@ -9,7 +9,7 @@ const client = new Twitter({
     access_token_secret: config.access_token_secret
 });
 
-const stream = client.stream('statuses/filter', { track: '#galautt', follow: '97315136' });
+const stream = client.stream('statuses/filter', { track: '#galautt2018', follow: '97315136' });
 
 stream.on('data', function(event) {
     console.log("tweet !")
