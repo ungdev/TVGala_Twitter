@@ -6,6 +6,7 @@
     "start": "gulp && node build/app"
   },
   "dependencies": {
+    "dotenv": "^6.1.0",
     "request": "^2.81.0",
     "twitter": "^1.7.0"
   },

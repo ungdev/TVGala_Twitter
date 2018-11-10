@@ -1,21 +1,21 @@
 import Twitter     from 'twitter';
 import request     from 'request';
-import * as config from './config';
+require('dotenv').config()
 
 const client = new Twitter({
-    consumer_key       : config.consumer_key,
-    consumer_secret    : config.consumer_secret,
-    access_token_key   : config.access_token_key,
-    access_token_secret: config.access_token_secret
-});
+    consumer_key       : process.env.CONSUMER_KEY,
+    consumer_secret    : process.env.CONSUMER_SECRET,
+    access_token_key   : process.env.ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.ACCESS_TOKEN_SECRET,
+})
 
-const stream = client.stream('statuses/filter', { track: '#galautt2018', follow: '97315136' });
+const stream = client.stream('statuses/filter', { track: `#${process.env.HASHTAG}` })
 
 stream.on('data', function(event) {
     console.log("tweet !")
     //console.log(event.text)
     request.post({
-        url    : `${config.api}/sms`,
+        url    : `${process.env.SERVER_URL}/sms`,
         headers: { 'content-type': 'application/json' },
         body   : JSON.stringify({
             message: event.text,
