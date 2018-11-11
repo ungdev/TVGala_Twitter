@@ -21,6 +21,7 @@ stream.on('data', function(event) {
         .toLowerCase()
         .includes(removeAccents(word).toLowerCase()))
     : false
+    event.text = event.text.replace('&gt;', '>').replace('&lt;', '<')
     console.log(`Message en provenance de ${event.user.screen_name}: "${event.text}"`)
     if(found) {
       request.post({
