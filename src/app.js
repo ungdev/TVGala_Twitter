@@ -21,12 +21,13 @@ stream.on('data', function(event) {
         .toLowerCase()
         .includes(removeAccents(word).toLowerCase()))
     : false
+    console.log(`Message en provenance de ${event.user.screen_name}: "${event.text}"`)
     if(found) {
       request.post({
           url    : `${process.env.SLACK_URL}`,
           headers: { 'content-type': 'application/json' },
           body   : JSON.stringify({
-              text: `Message censuré en provencance de ${event.user.screen_name}: "${event.text}"`,
+              text: `Message censuré en provenance de ${event.user.screen_name}: "${event.text}"`,
           })
       });
     }
